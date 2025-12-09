@@ -4,4 +4,6 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-notify-rust = "4.11.7"
+clap = { version = "4.5.53", features = ["derive"] }
+notify-rust = { version = "4.11.7", features = ["serde", "zbus"], default-features = false }
+rand = { version = "0.9.2", features = ["thread_rng"], default-features = false }
