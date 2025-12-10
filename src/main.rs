@@ -33,23 +33,24 @@ struct Args {
     #[arg(short, long, default_value_t = 60 * 60)]
     interval_seconds: u64,
 
-    #[arg(short, long, default_value_t = 5)]
+    #[arg(short, long, default_value_t = 10)]
     duration_seconds: u64,
 }
 
 fn main() {
     let args = Args::parse();
-
     let mut rng = rand::rng();
 
     loop {
-        Notification::new()
+        if let Err(e) = Notification::new()
             .appname("Hydration Notifier")
             .summary("Drink Water")
             .timeout(Duration::from_secs(args.duration_seconds))
             .body(MESSAGES[rng.random_range(0..MESSAGES.len())])
             .show()
-            .unwrap();
+        {
+            eprintln!("Failed to show notification: {}", e);
+        }
 
         thread::sleep(Duration::from_secs(args.interval_seconds));
     }

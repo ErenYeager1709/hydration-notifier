@@ -17,14 +17,18 @@ cargo install --path .
 ```ini
 [Unit]
 Description=Hydration Notifier Service
-After=network.target
+After=graphical.target default.target
 
 [Service]
-ExecStart=/home/<username>/.cargo/bin/hydration-notifier
+ExecStart=/home/<User>/.cargo/bin/hydration-notifier
 Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+Environment="PATH=/home/<User>/.cargo/bin:/usr/local/bin:/usr/bin:/bin"
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
 ```
 
 3. Enable and start the service:
