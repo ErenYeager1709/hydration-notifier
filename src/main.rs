@@ -30,7 +30,7 @@ const MESSAGES: [&str; 20] = [
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
-    #[arg(short, long, default_value_t = 60 * 60)]
+    #[arg(short, long, default_value_t = 60 * 30)]
     interval_seconds: u64,
 
     #[arg(short, long, default_value_t = 10)]
