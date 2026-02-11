@@ -1,6 +1,6 @@
 use std::{thread, time::Duration};
 
-use clap::{Parser, arg, command};
+use clap::Parser;
 use notify_rust::Notification;
 use rand::Rng;
 
